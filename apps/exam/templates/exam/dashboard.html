@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css" integrity="sha384-PDle/QlgIONtM1aqA2Qemk5gPOE7wFq8+Em+G/hmo5Iq0CCmYZLv3fVRDJ4MMwEA" crossorigin="anonymous">
+
+    <title>Dashboard</title>
+</head>
+
+<body>
+
+    <div class='row' style="padding:0px 15px">
+        <h3 class='col-sm-6'>Hello {{users.first_name}}!</h3>
+        <div class='ml-auto row' style="vertical-align: top">
+            <a style="margin-right:15px" href="/logout"><u>Log Out</u></a>
+            <a href="/trips/new"><button class='btn shadow border' style='vertical-align: top;margin-right:15px'>Creat a new trip!</button></a>
+        </div>
+    </div>
+
+
+    <div class="offset-sm-1">
+        <p>Your trips:</p>
+        <table class="table table-striped col-sm-10 border">
+
+            <thead>
+                <tr>
+                    <th class='border-left border-right' scope="col-2">Destination</th>
+                    <th class='border-left border-right' scope="col-1">Start Date</th>
+                    <th class='border-left border-right' scope="col-1">End Date</th>
+                    <th class='border-left border-right' scope="col-2">Plan</th>
+                    <th class='border-left border-right' scope="col-2">Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for x in create_trips %}
+
+                <tr>
+                    <td class='border-left border-right'>
+                        <a style="margin-right:20px" href="/trips/{{x.id}}"><u>{{x.destination}}</u></a>
+                    </td>
+                    <td class='border-left border-right'>{{x.start_date}}</td>
+                    <td class='border-left border-right'>{{x.end_date}}</td>
+                    <td class='border-left border-right'>{{x.plan}}</td>
+                    <td class='border-left border-right'>
+
+                        <a style="margin-right:20px" href="/remove/{{x.id}}"><u>Remove</u></a>|
+                        <a style="margin-right:20px" href="/trips/edit/{{x.id}}"><u>Edit</u></a>
+
+                    </td>
+
+                </tr>
+
+                {% endfor %} {% for x in join_trips %}
+
+                <tr>
+                    <td class='border-left border-right'>
+                        <a style="margin-right:20px" href="/trips/{{x.id}}"><u>{{x.destination}}</u></a>
+                    </td>
+                    <td class='border-left border-right'>{{x.start_date}}</td>
+                    <td class='border-left border-right'>{{x.end_date}}</td>
+                    <td class='border-left border-right'>{{x.plan}}</td>
+                    <td class='border-left border-right'>
+
+                        <a style="margin-right:20px" href="/cancel/{{x.id}}"><u>Cancel</u></a>
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+    </div>
+
+
+    <div class="offset-sm-1" style="margin-top:50px">
+        <p>Other people's trips:</p>
+        <table class="table table-striped col-sm-10 border">
+
+            <thead>
+                <tr>
+                    <th class='border-left border-right' scope="col-2">Destination</th>
+                    <th class='border-left border-right' scope="col-1">Start Date</th>
+                    <th class='border-left border-right' scope="col-1">End Date</th>
+                    <th class='border-left border-right' scope="col-2">Plan</th>
+                    <th class='border-left border-right' scope="col-2">Want to join?</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for x in other_trips %}
+
+                <tr>
+                    <td class='border-left border-right'>
+                        <a style="margin-right:20px" href="/trips/{{x.id}}"><u>{{x.destination}}</u></a>
+                    </td>
+                    <td class='border-left border-right'>{{x.start_date}}</td>
+                    <td class='border-left border-right'>{{x.end_date}}</td>
+                    <td class='border-left border-right'>{{x.plan}}</td>
+                    <td class='border-left border-right'>
+
+                        <a style="margin-right:20px" href="/join/{{x.id}}"><u>Join</u></a>
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+    </div>
+
+
+
+</body>
+
+</html>

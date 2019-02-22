@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Show</title>
+    <style>
+        .green {
+            color: green
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class='row' style="padding:0px 25px">
+        <h3 class='col-sm-6'>Hello {{users.first_name}}! Read about this trip!</h3>
+        <div class='ml-auto row' style="vertical-align: top">
+            <a href="/dashboard"><u>Dashboard</u></a>
+            <a style="margin:0px 15px" href="/logout"><u>Log Out</u></a>
+        </div>
+    </div>
+
+
+
+    <h4 class='offset-sm-1' style="margin-top:30px">{{trips.destination}}</h4>
+    <div class='offset-sm-1 border col-sm-5'>
+        <p><span>Start Date:</span><span>{{trips.start_date}}</span></p>
+        <p><span>End Date:</span><span>{{trips.end_date}}</span></p>
+        <p><span>Created On:</span><span>{{trips.created_at}}</span></p>
+        <p><span>Last Updated:</span><span>{{trips.updated_at}}</span></p>
+        <p><span>Plan:</span><span></span>{{trips.plan}}</p>
+        <p><span>Created By:</span><span>{{trips.user_create.first_name}}</span></p>
+    </div>
+
+
+    <div class='offset-sm-1 border col-sm-5' style='margin-top:50px'>
+        <P style="font-weight:600">People who've joined the trip:</p>
+        {%for x in join%}
+        <p>{{x.first_name}}</p>
+        {%endfor%}
+    </div>
+</body>
+
+</html>
